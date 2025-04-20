@@ -17,7 +17,7 @@ public class Nodo {
     Nodo der;
     int altura;
 
-    public Nodo(int valor, String minigame_name, Minijuego juego) {
+    public Nodo(int dato, String minigame_name, Minijuego juego) {
         this.minigame_name = minigame_name;
         this.dato = dato;
         this.juego = juego;

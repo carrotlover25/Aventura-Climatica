@@ -15,6 +15,13 @@ public class AventuraClimatica {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+
+        // crear arbol
+        Arbol arbol = new Arbol();
+        arbol.llenarConNumerosRandom();
+        arbol.imprimirArbol(arbol.raiz);
+
+
     }
     
 }
