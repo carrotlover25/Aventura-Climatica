@@ -39,6 +39,29 @@ public class Arbol {
         insertarBalanceado(lista, inicio, medio - 1, nivel + 1);
         insertarBalanceado(lista, medio + 1, fin, nivel + 1);
     }
+
+    public ArrayList<Integer> obtenerNodosUltimoNivel() {
+        ArrayList<Integer> resultado = new ArrayList<>();
+        int altura = altura(raiz);
+        recolectarNodosEnNivel(raiz, 1, altura, resultado);
+        return resultado;
+    }
+
+    private int altura(Nodo nodo) {
+        if (nodo == null) return 0;
+        return 1 + Math.max(altura(nodo.izq), altura(nodo.der));
+    }
+
+    private void recolectarNodosEnNivel(Nodo nodo, int nivelActual, int nivelObjetivo, ArrayList<Integer> resultado) {
+        if (nodo == null) return;
+
+        if (nivelActual == nivelObjetivo) {
+            resultado.add(nodo.dato);
+        } else {
+            recolectarNodosEnNivel(nodo.izq, nivelActual + 1, nivelObjetivo, resultado);
+            recolectarNodosEnNivel(nodo.der, nivelActual + 1, nivelObjetivo, resultado);
+        }
+    }
  
 
        private void imprimirArbol(Nodo raiz, String estructuraDibujar, boolean esIzquierdo) {
@@ -67,6 +90,28 @@ public class Arbol {
         imprimirArbol(raiz, "", false);
     }
  
+    public boolean ruta(int elemento, int secreto) {
+        Nodo current = raiz;
+        System.out.print("Ruta: ");
+    
+        while (current != null) {
+            System.out.print(current.dato + " -> ");
+    
+            if (elemento == current.dato) {
+                System.out.println("\nEsta no es la temperatura correcta. Sigue Intentando");
+                return false;
+            }
+    
+            if (elemento < current.dato) {
+                current = current.izq;
+            } else {
+                current = current.der;
+            }
+        }
+    
+        System.out.println("\nEl número ingresado no se encuentra en el árbol.");
+        return false;
+    }
 }
 
 
