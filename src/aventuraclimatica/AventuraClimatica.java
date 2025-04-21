@@ -89,10 +89,10 @@ public class AventuraClimatica {
             String op = sc.nextLine().toLowerCase();
             int nivelAnterior = miArbol.altura(current);
 
-            if (op.equals("i") && current.izq != null) {
-                current = current.izq;
-            } else if (op.equals("d") && current.der != null) {
+            if (op.equals("i") && current.der != null) {
                 current = current.der;
+            } else if (op.equals("d") && current.izq != null) {
+                current = current.izq;
             } else if (op.equals("b") && current.padre != null) {
                 current = current.padre;
             } else if (op.equals("q")) {

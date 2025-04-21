@@ -5,35 +5,57 @@
 package core.minijuegos;
 
 import aventuraclimatica.Minijuego;
+import java.util.Random;
 import java.util.Scanner;
 
 public class Crucigrama implements Minijuego {
 
     @Override
     public void play() {
+        boolean gano = false;
         Scanner sc = new Scanner(System.in);
-        System.out.println("Bienvenid@ a nuestro Adivina la palabra con temática ecológica");
+        System.out.println("Bienvenid@ a Adivina la palabra con temática ecológica");
+        String palabra = "";
+        String pista = "";
 
-        String palabra1 = "reciclar";
-        String pista1 = "Acción que ayuda a reducir residuos y reutilizar materiales.";
-        jugarPalabra(sc, palabra1, pista1);
+        while (!gano) {
+            int opcion = new Random().nextInt(5); 
+            switch (opcion) {
+            case 0 -> {
+                palabra = "reciclar";
+                pista = "Acción que ayuda a reducir residuos y reutilizar materiales.";
+            }
+            case 1 -> {
+                palabra = "agua";
+                pista = "Recurso natural esencial para la vida y el planeta.";
+            }
+            case 2 -> {
+                palabra = "energia";
+                pista = "Puede ser renovable o no, pero la del sol y el viento son ecológicas.";
+            }
+            case 3 -> {
+                palabra = "bosque";
+                pista = "Hogar de muchos seres vivos y fundamental para el equilibrio del planeta.";
+            }
+            case 4 -> {
+                palabra = "compostar";
+                pista = "Proceso natural que convierte residuos orgánicos en abono.";
+            }
+            default -> {
+                System.out.println("Ocurrió un error al seleccionar la palabra.");
+                return;
+            }
+        }
 
-        
-        String palabra2 = "agua";
-        String pista2 = "Recurso natural esencial para la vida y el planeta";
-        jugarPalabra(sc, palabra2, pista2);
-
+        gano = jugarPalabra(sc, palabra, pista);
        
-        String palabra3 = "energía";
-        String pista3 = "Puede ser renovable o no, pero la del sol y el viento son ecológicas.";
-        jugarPalabra(sc, palabra3, pista3);
 
-        System.out.println("🎉 ¡Terminaste el juego! ¡Gracias por cuidar el planeta! 🌱");
+        }
     }
 
-    public void jugarPalabra(Scanner sc, String palabra, String pista) {
+    public boolean jugarPalabra(Scanner sc, String palabra, String pista) {
         int intentos = 2;
-
+        System.out.println("================================");
         System.out.println("🧩 Pista: " + pista);
         System.out.println("Primera letra: " + palabra.charAt(0));
 
@@ -44,10 +66,12 @@ public class Crucigrama implements Minijuego {
 
             if (intento.equals(palabra)) {
                 System.out.println("✅ ¡Correcto!\n");
-                return;
+                 System.out.println("🎉 ¡Gracias por cuidar el planeta! 🌱");
+                return true;
             } else {
                 System.out.println("❌ Incorrecto.");
                 intentos--;
+                return false;
             }
         }
 
@@ -58,8 +82,11 @@ public class Crucigrama implements Minijuego {
 
         if (intentoFinal.equals(palabra)) {
             System.out.println("✅ ¡Correcto!\n");
+             System.out.println("🎉 ¡Gracias por cuidar el planeta! 🌱");
+            return true;
         } else {
             System.out.println("❌ La palabra correcta era: " + palabra + "\n");
+              return false;
         }
     }
 }
