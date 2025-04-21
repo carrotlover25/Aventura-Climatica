@@ -13,7 +13,7 @@ import java.util.Scanner;
  * @author mfrey
  */
 public class RockPaperScissor implements Minijuego {
-     private static final String[] OPCIONES = {"Piedra (Montaña)", "Papel (Bosque)", "Tijera (Contaminación)"};
+     private String[] OPCIONES = {"Piedra (Montaña)", "Papel (Bosque)", "Tijera (Contaminación)"};
 
     @Override
     public void play(){
