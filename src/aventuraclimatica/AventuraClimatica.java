@@ -46,7 +46,6 @@ public class AventuraClimatica {
             Random rand = new Random();
             int aleatorio = ultimos.get(rand.nextInt(ultimos.size()));
             NODO_SOSTENIBILIDAD = aleatorio;
-            System.out.println("Nodo aleatorio del último nivel: " + aleatorio);
         } else {
             System.out.println("El árbol está vacío o no tiene nodos en el último nivel.");
         }
@@ -57,9 +56,6 @@ public class AventuraClimatica {
         Scanner sc = new Scanner(System.in);
         
         while (current != null){
-            System.out.println("juego actual: " + current.minigame_name);
-            current.juego.play();
-            
             if (current.izq == null || current.der == null){
                 System.out.println("LLegaste al Final. Y lo que sea "); // WIP!!!!!!
                 return;
@@ -67,7 +63,7 @@ public class AventuraClimatica {
 
             if (current.dato == NODO_SOSTENIBILIDAD){
                 System.out.println("¡Felicidades! Has encontrado el Nodo de Sostenibilidad.");
-                System.out.println("¡Gracias por ayudar a salvar el planeta!");
+                System.out.println("Has aprendido sobre el cambio climativo y como ayudar a salvar el planeta ¡Gracias por ayudar a salvar el planeta!");
                 return;
             } else if (current.dato < NODO_SOSTENIBILIDAD){
                 System.out.println("El número es menor que el Nodo de Sostenibilidad.");
@@ -75,13 +71,26 @@ public class AventuraClimatica {
                 System.out.println("El número es mayor que el Nodo de Sostenibilidad.");
             }
 
+            if (current.dato != miArbol.raiz.dato){
+                System.out.println("juego actual: " + current.minigame_name);
+                current.juego.play();
+            }
+
             System.out.println("Escriba (i) para ir a la izquierda.");
             System.out.println("Escriba (d) para ir a la derecha");
+            System.out.println("Escriba (q) para salir del juego.");
+
+
+
             String op = sc.nextLine().toLowerCase();
+
             if (op.equals("i")){
                 current = current.izq;
             } else if (op.equals("d")){
                 current = current.der;
+            } else if (op.equals("q")){
+                System.out.println("Gracias por jugar.");
+                return;
             } else {
                 System.out.println("Error de opción ");
                 op = sc.nextLine().toLowerCase();

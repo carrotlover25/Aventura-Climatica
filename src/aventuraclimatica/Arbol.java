@@ -12,7 +12,6 @@ import core.minijuegos.Triqui;
 import core.minijuegos.Trivia;
 import java.util.ArrayList;
 import java.util.Random;
-import java.util.Scanner;
 
 /**
  *
@@ -22,7 +21,7 @@ public class Arbol {
     Nodo raiz;
 
     private Minijuego generarJuegoAleatorio() {
-        int r = new Random().nextInt(0,1); // genera entre 0 y 5
+        int r = new Random().nextInt(0,5); // genera entre 0 y 5
         switch (r) {
             case 0: return new Trivia();
             case 1: return new TempSecreta(); //Adivinar num
@@ -111,57 +110,7 @@ public class Arbol {
     public void imprimirArbol(Nodo raiz) {
         imprimirArbol(raiz, "", false);
     }
- 
-    /* public boolean ruta(int elemento, int secreto) {
-        Nodo current = raiz;
-        System.out.print("Ruta: ");
     
-        while (current != null) {
-            System.out.print(current.dato + " -> ");
-    
-            if (elemento == current.dato) {
-                System.out.println("\nEsta no es la temperatura correcta. Sigue Intentando");
-                return false;
-            }
-    
-            if (elemento < current.dato) {
-                current = current.izq;
-            } else {
-                current = current.der;
-            }
-        }
-    
-        System.out.println("\nEl número ingresado no se encuentra en el árbol.");
-        return false;
-    } */
-    
-    public void jugar(){
-        Nodo current = this.raiz;
-        Scanner sc = new Scanner(System.in);
-        
-        while (current != null){
-            System.out.println("juego actual: " + current.minigame_name);
-            current.juego.play();
-            
-            if (current.izq == null || current.der == null){
-                System.out.println("LLegaste al Final. Y lo que sea "); // WIP!!!!!!
-                return;
-            }
-
-            
-            System.out.println("Escriba (i) para ir a la izquierda.");
-            System.out.println("Escriba (d) para ir a la derecha");
-            String op = sc.nextLine().toLowerCase();
-            if (op.equals("i")){
-                current = current.izq;
-            } else if (op.equals("d")){
-                current = current.der;
-            } else {
-                System.out.println("Error de opción ");
-                op = sc.nextLine().toLowerCase();
-            }
-        }
-    }
 }
 
 
