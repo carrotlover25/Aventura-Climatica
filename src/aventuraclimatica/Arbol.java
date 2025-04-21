@@ -88,8 +88,8 @@ public class Arbol {
         if (raiz == null) return;
 
         String nuevaEstructura = estructuraDibujar;
-        String simbolo = esIzquierdo ? "├── " : "└── ";
-        nuevaEstructura += esIzquierdo ? "│   " : "    ";
+        String simbolo = esIzquierdo ? "└── " : "├── ";
+        nuevaEstructura += esIzquierdo ?  "    " : "│   ";
 
         // Determinar el marcador del nodo
         String marcador = "";
@@ -101,8 +101,8 @@ public class Arbol {
 
         System.out.println(estructuraDibujar + simbolo + raiz.dato + marcador);
 
-        imprimirArbol(raiz.izq, nuevaEstructura, true, actual, visitados);
         imprimirArbol(raiz.der, nuevaEstructura, false, actual, visitados);
+        imprimirArbol(raiz.izq, nuevaEstructura, true, actual, visitados);
     }
     
     public void imprimirArbol(Nodo raiz, Nodo actual, ArrayList<Nodo> visitados) {
