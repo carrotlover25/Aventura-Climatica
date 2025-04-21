@@ -16,4 +16,5 @@ public class Completar implements Minijuego {
     public void play(){
         System.out.println("Bienvenid@ a Completa la Palabra");
     }
+
 }

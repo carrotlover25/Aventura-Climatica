@@ -4,7 +4,14 @@
  */
 package aventuraclimatica;
 
+import core.minijuegos.Completar;
+import core.minijuegos.Crucigrama;
+import core.minijuegos.RockPaperScissor;
+import core.minijuegos.TempSecreta;
+import core.minijuegos.Triqui;
+import core.minijuegos.Trivia;
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
 
 /**
@@ -13,12 +20,26 @@ import java.util.Scanner;
  */
 public class Arbol {
     Nodo raiz;
+
+    private Minijuego generarJuegoAleatorio() {
+        int r = new Random().nextInt(0,1); // genera entre 0 y 5
+        switch (r) {
+            case 0: return new Trivia();
+            case 1: return new TempSecreta(); //Adivinar num
+            case 2: return new Crucigrama();
+            case 3: return new Triqui();
+            case 4: return new RockPaperScissor();
+            case 5: return new Completar(); 
+            default: return new Trivia(); 
+        }
+    }
     
     private Nodo insertarRecursivo(Nodo nodo, int valor, int nivel) {
         if (nivel >= 6) return nodo;
 
         if (nodo == null) {
-            return new Nodo(valor, "", null);
+            Minijuego juegoAleatorio = generarJuegoAleatorio();
+            return new Nodo(valor, juegoAleatorio);
         }
 
         if (valor < nodo.dato) {
@@ -124,7 +145,9 @@ public class Arbol {
             
             if (current.izq == null || current.der == null){
                 System.out.println("LLegaste al Final. Y lo que sea "); // WIP!!!!!!
+                return;
             }
+
             
             System.out.println("Escriba (i) para ir a la izquierda.");
             System.out.println("Escriba (d) para ir a la derecha");

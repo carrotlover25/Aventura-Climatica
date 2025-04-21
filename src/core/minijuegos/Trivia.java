@@ -18,16 +18,16 @@ public class Trivia implements Minijuego {
     public void play(){
         System.out.println("Bienvenid@ a Trivia");
         Random random = new Random();
-        int aleatorio = random.nextInt(3);
+        int aleatorio = random.nextInt(2);
         
         switch (aleatorio){
-            case 1:
+            case 0:
                 pregunta1();
                 break;
-            case 2:
+            case 1:
                 pregunta2();
                 break;
-            case 3:
+            case 2:
                 pregunta3();
                 break;  
             default:

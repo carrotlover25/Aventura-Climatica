@@ -10,6 +10,4 @@ package aventuraclimatica;
  */
 public interface Minijuego {
     void play();
-
-    
 }

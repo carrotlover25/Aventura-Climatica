@@ -53,23 +53,41 @@ public class AventuraClimatica {
 
         System.out.println(NODO_SOSTENIBILIDAD);
 
-    
-
-    /* while (!adivinado) {
-            int guess;
-            System.out.print("Ingrese una temperatura: ");
-            guess = scanner.nextInt();
+        Nodo current = miArbol.raiz;
+        Scanner sc = new Scanner(System.in);
+        
+        while (current != null){
+            System.out.println("juego actual: " + current.minigame_name);
+            current.juego.play();
             
-            adivinado = miArbol.ruta(guess, NODO_SOSTENIBILIDAD);
-    
-            if (!adivinado) {
-                if (guess < NODO_SOSTENIBILIDAD) {
-                    System.out.println("La temperatura secreta es mayor.");
-                } else if (guess > NODO_SOSTENIBILIDAD) {
-                    System.out.println("La temperatura secreta es menor.");
-                }
+            if (current.izq == null || current.der == null){
+                System.out.println("LLegaste al Final. Y lo que sea "); // WIP!!!!!!
+                return;
             }
-    } */
+
+            if (current.dato == NODO_SOSTENIBILIDAD){
+                System.out.println("¡Felicidades! Has encontrado el Nodo de Sostenibilidad.");
+                System.out.println("¡Gracias por ayudar a salvar el planeta!");
+                return;
+            } else if (current.dato < NODO_SOSTENIBILIDAD){
+                System.out.println("El número es menor que el Nodo de Sostenibilidad.");
+            } else {
+                System.out.println("El número es mayor que el Nodo de Sostenibilidad.");
+            }
+
+            System.out.println("Escriba (i) para ir a la izquierda.");
+            System.out.println("Escriba (d) para ir a la derecha");
+            String op = sc.nextLine().toLowerCase();
+            if (op.equals("i")){
+                current = current.izq;
+            } else if (op.equals("d")){
+                current = current.der;
+            } else {
+                System.out.println("Error de opción ");
+                op = sc.nextLine().toLowerCase();
+            }
+        }
+    
     
 }
 
