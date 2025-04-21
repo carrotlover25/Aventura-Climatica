@@ -54,11 +54,8 @@ public class Arbol {
 
     public void insertarBalanceado(ArrayList<Integer> lista, int inicio, int fin, int nivel) {
         if (inicio > fin || nivel >= 6) return;
-        System.out.println(lista);
         int medio = (inicio + fin) / 2;
         raiz = insertarRecursivo(raiz, lista.get(medio), 1, null); // raíz no tiene padre
-        System.out.println("RAIZ" + raiz.dato);
-        System.out.println("PADRE" + raiz.padre);
         insertarBalanceado(lista, inicio, medio - 1, nivel + 1);
         insertarBalanceado(lista, medio + 1, fin, nivel + 1);
     }

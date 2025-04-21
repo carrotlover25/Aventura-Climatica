@@ -53,7 +53,6 @@ public class AventuraClimatica {
         Nodo current = miArbol.raiz;
 
 
-        System.out.println(NODO_SOSTENIBILIDAD);
        // miArbol.imprimirArbol(miArbol.raiz, current, visitados);
 
         
