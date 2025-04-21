@@ -67,7 +67,7 @@ public class Arbol {
         return resultado;
     }
 
-    private int altura(Nodo nodo) {
+    public int altura(Nodo nodo) {
         if (nodo == null) return 0;
         return 1 + Math.max(altura(nodo.izq), altura(nodo.der));
     }

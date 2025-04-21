@@ -87,6 +87,8 @@ public class AventuraClimatica {
 
 
             String op = sc.nextLine().toLowerCase();
+            Nodo anterior = current; // Guardar el nodo anterior
+            int nivelAnterior = miArbol.altura(current);
 
             if (op.equals("i") && current.izq != null) {
                 current = current.izq;
@@ -99,6 +101,21 @@ public class AventuraClimatica {
                 return;
             } else {
                 System.out.println("Opción no válida. Intenta nuevamente.");
+            }
+
+            int nivelActual = miArbol.altura(current);
+            System.out.println("Nivel actual: " + nivelActual + " | Nivel anterior: " + nivelAnterior);
+            if (nivelActual != nivelAnterior) {
+                String nombre = switch (nivelActual) {
+                    case 1 -> "🌱 Nivel 1: Introducción al Cambio Climático";
+                    case 2 -> "🌿 Nivel 2: Energías Renovables";
+                    case 3 -> "🌊 Nivel 3: Conservación del Agua";
+                    case 4 -> "🔥 Nivel 4: Reducción de Emisiones";
+                    case 5 -> "🧠 Nivel 5: Educación Ambiental";
+                    case 6 -> "🌍 Nivel 6: Sostenibilidad Global";
+                    default -> "Nivel desconocido";
+                };
+                System.out.println("\n📍 Has alcanzado " + nombre + "\n");
             }
         }
     
