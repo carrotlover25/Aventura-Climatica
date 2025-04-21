@@ -87,7 +87,6 @@ public class AventuraClimatica {
 
 
             String op = sc.nextLine().toLowerCase();
-            Nodo anterior = current; // Guardar el nodo anterior
             int nivelAnterior = miArbol.altura(current);
 
             if (op.equals("i") && current.izq != null) {
@@ -104,7 +103,7 @@ public class AventuraClimatica {
             }
 
             int nivelActual = miArbol.altura(current);
-            System.out.println("Nivel actual: " + nivelActual + " | Nivel anterior: " + nivelAnterior);
+
             if (nivelActual != nivelAnterior) {
                 String nombre = switch (nivelActual) {
                     case 1 -> "🌱 Nivel 1: Introducción al Cambio Climático";
