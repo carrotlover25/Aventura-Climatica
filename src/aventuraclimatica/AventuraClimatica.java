@@ -25,8 +25,8 @@ public class AventuraClimatica {
         Scanner scanner = new Scanner(System.in);
         int NODO_SOSTENIBILIDAD = 0;
         
-        System.out.println("¡Bienvenido a la gran Aventura Climática!");
-        System.out.println("Encuentra el Nodo de Sostenibilidad que ayudara a salvar el planeta!");
+        System.out.println("¡Bienvenido a la gran Aventura Climática! 🌿");
+        System.out.println("Encuentra el Nodo de Sostenibilidad que ayudara a salvar el planeta! 🌎");
 
         
         for (int i = 0; i < 63; i++) {
