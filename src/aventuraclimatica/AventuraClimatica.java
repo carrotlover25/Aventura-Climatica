@@ -19,12 +19,14 @@ public class AventuraClimatica {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-         Random random = new Random();
+        Random random = new Random();
         ArrayList<Integer> numeros = new ArrayList<>();
-        boolean adivinado = false;
-        Scanner scanner = new Scanner(System.in);
         int NODO_SOSTENIBILIDAD = 0;
-        
+        ArrayList<Nodo> visitados = new ArrayList<>();
+        Arbol miArbol = new Arbol();
+      
+        Scanner sc = new Scanner(System.in);
+
         System.out.println("¡Bienvenido a la gran Aventura Climática! 🌿");
         System.out.println("Encuentra el Nodo de Sostenibilidad que ayudara a salvar el planeta! 🌎");
 
@@ -36,9 +38,7 @@ public class AventuraClimatica {
 
         Collections.sort(numeros); // importante que esté ordenada
 
-        Arbol miArbol = new Arbol();
         miArbol.insertarBalanceado(numeros, 0, numeros.size() - 1, 1);
-        miArbol.imprimirArbol(miArbol.raiz);
 
         ArrayList<Integer> ultimos = miArbol.obtenerNodosUltimoNivel();
 
@@ -50,29 +50,37 @@ public class AventuraClimatica {
             System.out.println("El árbol está vacío o no tiene nodos en el último nivel.");
         }
 
-        System.out.println(NODO_SOSTENIBILIDAD);
-
         Nodo current = miArbol.raiz;
-        Scanner sc = new Scanner(System.in);
+
+
+        System.out.println(NODO_SOSTENIBILIDAD);
+       // miArbol.imprimirArbol(miArbol.raiz, current, visitados);
+
         
         while (current != null){
-            if (current.izq == null || current.der == null){
-                System.out.println("LLegaste al Final. Y lo que sea "); // WIP!!!!!!
+            if (current.dato == NODO_SOSTENIBILIDAD){
+                System.out.println("¡Felicidades! Has encontrado el Nodo de Sostenibilidad.");
+                System.out.println("Has aprendido sobre el cambio climativo y como ayudar a salvar el planeta ¡Gracias por ayudar a salvar el planeta!");
                 return;
+            } 
+
+            if (!visitados.contains(current)) {
+                visitados.add(current);
             }
+
+            miArbol.imprimirArbol(miArbol.raiz, current, visitados);
 
             System.out.println("juego actual: " + current.minigame_name);
             current.juego.play();
 
             System.out.println("Escriba (i) para ir a la izquierda.");
             System.out.println("Escriba (d) para ir a la derecha");
+            if (current.padre != null) System.out.println("Escriba (b) para volver al nodo anterior.");
             System.out.println("Escriba (q) para salir del juego.");
 
-            if (current.dato == NODO_SOSTENIBILIDAD){
-                System.out.println("¡Felicidades! Has encontrado el Nodo de Sostenibilidad.");
-                System.out.println("Has aprendido sobre el cambio climativo y como ayudar a salvar el planeta ¡Gracias por ayudar a salvar el planeta!");
-                return;
-            } else if (current.dato < NODO_SOSTENIBILIDAD){
+            
+            
+            if (current.dato < NODO_SOSTENIBILIDAD){
                 System.out.println("El número es menor que el Nodo de Sostenibilidad.");
             } else {
                 System.out.println("El número es mayor que el Nodo de Sostenibilidad.");
@@ -81,16 +89,17 @@ public class AventuraClimatica {
 
             String op = sc.nextLine().toLowerCase();
 
-            if (op.equals("i")){
+            if (op.equals("i") && current.izq != null) {
                 current = current.izq;
-            } else if (op.equals("d")){
+            } else if (op.equals("d") && current.der != null) {
                 current = current.der;
-            } else if (op.equals("q")){
+            } else if (op.equals("b") && current.padre != null) {
+                current = current.padre;
+            } else if (op.equals("q")) {
                 System.out.println("Gracias por jugar.");
                 return;
             } else {
-                System.out.println("Error de opción ");
-                op = sc.nextLine().toLowerCase();
+                System.out.println("Opción no válida. Intenta nuevamente.");
             }
         }
     

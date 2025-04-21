@@ -33,30 +33,32 @@ public class Arbol {
         }
     }
     
-    private Nodo insertarRecursivo(Nodo nodo, int valor, int nivel) {
+    private Nodo insertarRecursivo(Nodo nodo, int valor, int nivel, Nodo padre) {
         if (nivel >= 6) return nodo;
 
         if (nodo == null) {
             Minijuego juegoAleatorio = generarJuegoAleatorio();
-            return new Nodo(valor, juegoAleatorio);
+            Nodo nuevoNodo = new Nodo(valor, juegoAleatorio);
+            nuevoNodo.padre = padre;
+            return nuevoNodo;
         }
 
         if (valor < nodo.dato) {
-            nodo.izq = insertarRecursivo(nodo.izq, valor, nivel + 1);
+            nodo.izq = insertarRecursivo(nodo.izq, valor, nivel + 1, nodo);
         } else if (valor > nodo.dato) {
-            nodo.der = insertarRecursivo(nodo.der, valor, nivel + 1);
+            nodo.der = insertarRecursivo(nodo.der, valor, nivel + 1, nodo);
         }
 
         return nodo;
     }
 
-    // Inserta de manera balanceada a partir de una lista ordenada
     public void insertarBalanceado(ArrayList<Integer> lista, int inicio, int fin, int nivel) {
         if (inicio > fin || nivel >= 6) return;
-
+        System.out.println(lista);
         int medio = (inicio + fin) / 2;
-        raiz = insertarRecursivo(raiz, lista.get(medio), 1);
-
+        raiz = insertarRecursivo(raiz, lista.get(medio), 1, null); // raíz no tiene padre
+        System.out.println("RAIZ" + raiz.dato);
+        System.out.println("PADRE" + raiz.padre);
         insertarBalanceado(lista, inicio, medio - 1, nivel + 1);
         insertarBalanceado(lista, medio + 1, fin, nivel + 1);
     }
@@ -85,30 +87,29 @@ public class Arbol {
     }
  
 
-       private void imprimirArbol(Nodo raiz, String estructuraDibujar, boolean esIzquierdo) {
-        if (raiz == null) {
-            return;
-        }
+       private void imprimirArbol(Nodo raiz, String estructuraDibujar, boolean esIzquierdo, Nodo actual, ArrayList<Nodo> visitados) {
+        if (raiz == null) return;
 
         String nuevaEstructura = estructuraDibujar;
-        String simbolo;
+        String simbolo = esIzquierdo ? "├── " : "└── ";
+        nuevaEstructura += esIzquierdo ? "│   " : "    ";
 
-        if (esIzquierdo) {
-            simbolo = "├── ";
-            nuevaEstructura += "│   ";
-        } else {
-            simbolo = "└── ";
-            nuevaEstructura += "    ";
+        // Determinar el marcador del nodo
+        String marcador = "";
+        if (raiz == actual) {
+            marcador = " ⭐ (Actual)";
+        } else if (visitados.contains(raiz)) {
+            marcador = " ✅ (Visitado)";
         }
 
-        System.out.println(estructuraDibujar + simbolo + raiz.dato);
+        System.out.println(estructuraDibujar + simbolo + raiz.dato + marcador);
 
-        imprimirArbol(raiz.izq, nuevaEstructura, true);
-        imprimirArbol(raiz.der, nuevaEstructura, false);
+        imprimirArbol(raiz.izq, nuevaEstructura, true, actual, visitados);
+        imprimirArbol(raiz.der, nuevaEstructura, false, actual, visitados);
     }
     
-    public void imprimirArbol(Nodo raiz) {
-        imprimirArbol(raiz, "", false);
+    public void imprimirArbol(Nodo raiz, Nodo actual, ArrayList<Nodo> visitados) {
+        imprimirArbol(raiz, "", false, actual, visitados);
     }
     
 }
