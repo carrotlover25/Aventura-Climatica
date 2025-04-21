@@ -12,6 +12,7 @@ public class Crucigrama implements Minijuego {
     @Override
     public void play() {
         Scanner sc = new Scanner(System.in);
+        System.out.println("Bienvenid@ a nuestro Adivina la palabra con temática ecológica");
 
         String palabra1 = "reciclar";
         String pista1 = "Acción que ayuda a reducir residuos y reutilizar materiales.";
