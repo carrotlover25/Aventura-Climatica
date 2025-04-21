@@ -20,44 +20,51 @@ public class RockPaperScissor implements Minijuego {
         System.out.println("Bienvenid@ a Piedra, Papel o Tijera");
         Scanner sc = new Scanner(System.in);
         Random rand = new Random();
+        boolean gano = false;
 
         System.out.println("\n🌿 Bienvenido a Piedra, Papel o Tijera - Versión Ecológica 🌎");
         System.out.println("En la versión ecológico, los clásicos elementos toman nuevos significados:");
-        System.out.println("1. Piedra (Montaña)");
-        System.out.println("2. Papel (Árboles)");
-        System.out.println("3. Tijera (Deforestación)");
 
-        int eleccionJugador = 0;
-        while (true) {
-            System.out.print("Elige una opción: 1 (Piedra), 2 (Papel), 3 (Tijera): ");
-            int input = sc.nextInt();
+        while (!gano) {
+            System.out.println("================================");
+            System.out.println("1. Piedra (Montaña)");
+            System.out.println("2. Papel (Árboles)");
+            System.out.println("3. Tijera (Deforestación)");
 
-            if (input == 1 || input == 2 || input == 3) { // verifica que es un solo dígito
-                eleccionJugador = input;
-                break;
+            int eleccionJugador = 0;
+            while (true) {
                 
+                System.out.print("Elige una opción: 1 (Piedra), 2 (Papel), 3 (Tijera): ");
+                int input = sc.nextInt();
+
+                if (input == 1 || input == 2 || input == 3) { // verifica que es un solo dígito
+                    eleccionJugador = input;
+                    break;
+                    
+                }
+                System.out.println("❌ Entrada inválida. Ingresa 1, 2 o 3.");
             }
-            System.out.println("❌ Entrada inválida. Ingresa 1, 2 o 3.");
-        }
 
-        int eleccionComputadora = rand.nextInt(3) + 1;
+            int eleccionComputadora = rand.nextInt(3) + 1;
 
-        System.out.println("Tu elección: " + OPCIONES[eleccionJugador - 1]);
-        System.out.println("Computadora eligió: " + OPCIONES[eleccionComputadora - 1]);
+            System.out.println("Tu elección: " + OPCIONES[eleccionJugador - 1]);
+            System.out.println("Computadora eligió: " + OPCIONES[eleccionComputadora - 1]);
 
-        int resultado = determinarGanador(eleccionJugador, eleccionComputadora);
-         switch (resultado) {
-            case 0:
-                System.out.println("🤝 ¡Empate!");
-                break;
-            case 1:
-                System.out.println("🎉 ¡Ganaste esta ronda!");
-                System.out.println(fraseAmbiental(eleccionJugador, eleccionComputadora));
-                break;
-            case -1:
-                System.out.println("💥 Perdiste esta ronda.");
-                System.out.println(fraseAmbiental(eleccionComputadora, eleccionJugador));
-                break;
+            int resultado = determinarGanador(eleccionJugador, eleccionComputadora);
+            switch (resultado) {
+                case 0:
+                    System.out.println("🤝 ¡Empate!");
+                    break;
+                case 1:
+                    System.out.println("🎉 ¡Ganaste esta ronda!");
+                    System.out.println(fraseAmbiental(eleccionJugador, eleccionComputadora));
+                    gano = true;
+                    break;
+                case -1:
+                    System.out.println("💥 Perdiste esta ronda.");
+                    System.out.println(fraseAmbiental(eleccionComputadora, eleccionJugador));
+                    break;
+            }
         }
     }
 
@@ -68,10 +75,10 @@ public class RockPaperScissor implements Minijuego {
         if ((jugador == 1 && computadora == 3) || // Piedra vence a Tijera
             (jugador == 2 && computadora == 1) || // Papel vence a Piedra
             (jugador == 3 && computadora == 2)) { // Tijera vence a Papel
-            return 1; // Gana el jugador
+            return 1; // Gana jugador
         }
 
-        return -1; // Pierde el jugador
+        return -1; // Pierde jugador
     }
 
     private String fraseAmbiental(int ganador, int perdedor) {
