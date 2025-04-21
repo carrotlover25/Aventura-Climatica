@@ -5,6 +5,7 @@
 package aventuraclimatica;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  *
@@ -90,7 +91,7 @@ public class Arbol {
         imprimirArbol(raiz, "", false);
     }
  
-    public boolean ruta(int elemento, int secreto) {
+    /* public boolean ruta(int elemento, int secreto) {
         Nodo current = raiz;
         System.out.print("Ruta: ");
     
@@ -111,6 +112,32 @@ public class Arbol {
     
         System.out.println("\nEl número ingresado no se encuentra en el árbol.");
         return false;
+    } */
+    
+    public void jugar(){
+        Nodo current = this.raiz;
+        Scanner sc = new Scanner(System.in);
+        
+        while (current != null){
+            System.out.println("juego actual: " + current.minigame_name);
+            current.juego.play();
+            
+            if (current.izq == null || current.der == null){
+                System.out.println("LLegaste al Final. Y lo que sea "); // WIP!!!!!!
+            }
+            
+            System.out.println("Escriba (i) para ir a la izquierda.");
+            System.out.println("Escriba (d) para ir a la derecha");
+            String op = sc.nextLine().toLowerCase();
+            if (op.equals("i")){
+                current = current.izq;
+            } else if (op.equals("d")){
+                current = current.der;
+            } else {
+                System.out.println("Error de opción ");
+                op = sc.nextLine().toLowerCase();
+            }
+        }
     }
 }
 
