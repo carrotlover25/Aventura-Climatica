@@ -30,13 +30,12 @@ public class RockPaperScissor implements Minijuego {
         int eleccionJugador = 0;
         while (true) {
             System.out.print("Elige una opción: 1 (Piedra), 2 (Papel), 3 (Tijera): ");
-            String input = sc.nextLine();
+            int input = sc.nextInt();
 
-            if (input.matches("\\d")) { // verifica que es un solo dígito
-                eleccionJugador = Integer.parseInt(input);
-                if (eleccionJugador >= 1 && eleccionJugador <= 3) {
-                    break;
-                }
+            if (input == 1 || input == 2 || input == 3) { // verifica que es un solo dígito
+                eleccionJugador = input;
+                break;
+                
             }
             System.out.println("❌ Entrada inválida. Ingresa 1, 2 o 3.");
         }
