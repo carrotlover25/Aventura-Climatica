@@ -21,7 +21,7 @@ public class Arbol {
     Nodo raiz;
 
     private Minijuego generarJuegoAleatorio() {
-        int r = new Random().nextInt(5,6); // genera entre 0 y 5
+        int r = new Random().nextInt(0,6); // genera entre 0 y 5
         switch (r) {
             case 0: return new Trivia();
             case 1: return new TempSecreta(); //Adivinar num
