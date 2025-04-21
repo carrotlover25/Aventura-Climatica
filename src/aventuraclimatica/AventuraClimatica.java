@@ -55,7 +55,7 @@ public class AventuraClimatica {
 
     
 
-    while (!adivinado) {
+    /* while (!adivinado) {
             int guess;
             System.out.print("Ingrese una temperatura: ");
             guess = scanner.nextInt();
@@ -69,7 +69,7 @@ public class AventuraClimatica {
                     System.out.println("La temperatura secreta es menor.");
                 }
             }
-    }
+    } */
     
 }
 

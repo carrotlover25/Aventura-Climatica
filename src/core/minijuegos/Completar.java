@@ -10,11 +10,10 @@ import aventuraclimatica.Minijuego;
  *
  * @author mfrey
  */
-public class TempSecreta implements Minijuego {
+public class Completar implements Minijuego {
+    
     @Override
     public void play(){
-        System.out.println("Bienvenid@ a Temperatura Secrets");
+        System.out.println("Bienvenid@ a Completa la Palabra");
     }
-    
-    
 }
