@@ -13,43 +13,49 @@ public class Triqui implements Minijuego {
     public void play() {
         System.out.println("🌎 Bienvenid@ a Triqui Ecológico 🌳 vs 🗑️");
 
-        String[][] tablero = {
-            {" ", " ", " "},
-            {" ", " ", " "},
-            {" ", " ", " "}
-        };
+        boolean gano = false;
 
-        Scanner sc = new Scanner(System.in);
-        Random rand = new Random();
+        while (!gano) {
+            System.out.println("================================");
+            String[][] tablero = {
+                {" ", " ", " "},
+                {" ", " ", " "},
+                {" ", " ", " "}
+            };
 
-        final String JUGADOR = "🌳";
-        final String MAQUINA = "🗑️";
-        boolean juegoActivo = true;
+            Scanner sc = new Scanner(System.in);
+            Random rand = new Random();
 
-        while (juegoActivo) {
-            mostrarTablero(tablero);
-            turnoJugador(tablero, sc, JUGADOR);
-            if (verificarGanador(tablero, JUGADOR)) {
-                mostrarTablero(tablero);
-                System.out.println("¡Ganaste, naturaleza wins! 🌳💪");
-                break;
-            }
-            if (tableroLleno(tablero)) {
-                mostrarTablero(tablero);
-                System.out.println("¡Empate!");
-                break;
-            }
+            String JUGADOR = "🌳";
+            String MAQUINA = "🗑️";
+            boolean juegoActivo = true;
 
-            turnoMaquina(tablero, rand, JUGADOR, MAQUINA);
-            if (verificarGanador(tablero, MAQUINA)) {
+            while (juegoActivo) {
                 mostrarTablero(tablero);
-                System.out.println("La máquina ganó... el planeta llora 😢");
-                break;
-            }
-            if (tableroLleno(tablero)) {
-                mostrarTablero(tablero);
-                System.out.println("¡Empate!");
-                break;
+                turnoJugador(tablero, sc, JUGADOR);
+                if (verificarGanador(tablero, JUGADOR)) {
+                    mostrarTablero(tablero);
+                    System.out.println("¡Ganaste, naturaleza triunfa! 🌳💪");
+                    gano = true;
+                    break;
+                }
+                if (tableroLleno(tablero)) {
+                    mostrarTablero(tablero);
+                    System.out.println("¡Empate!");
+                    break;
+                }
+
+                turnoMaquina(tablero, rand, JUGADOR, MAQUINA);
+                if (verificarGanador(tablero, MAQUINA)) {
+                    mostrarTablero(tablero);
+                    System.out.println("La máquina ganó... el planeta llora 😢");
+                    break;
+                }
+                if (tableroLleno(tablero)) {
+                    mostrarTablero(tablero);
+                    System.out.println("¡Empate!");
+                    break;
+                }
             }
         }
     }
