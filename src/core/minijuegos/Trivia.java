@@ -48,9 +48,9 @@ public class Trivia implements Minijuego {
         ans = sc.nextLine().toLowerCase();
         
         if (ans.equals("b")){
-            System.out.println("Correcto! Plantar árboles ayuda a absorber dióxido de carbono.");
+            System.out.println("Correcto! Plantar árboles ayuda a absorber dióxido de carbono.\n");
         } else {
-            System.out.println("Incorrecto. La respuesta es la b");
+            System.out.println("Incorrecto. La respuesta es la b \n");
         }
     }
     
@@ -64,9 +64,9 @@ public class Trivia implements Minijuego {
         String ans;
         ans = sc.nextLine().toLowerCase();
         if (ans.equals("c")){
-            System.out.println("Correcto! El plástico de un solo uso se convierte en microplásticos, contaminando los océanos.");
+            System.out.println("Correcto! El plástico de un solo uso se convierte en microplásticos, contaminando los océanos.\n");
         } else {
-            System.out.println("Incorrecto. La respuesta es la c");
+            System.out.println("Incorrecto. La respuesta es la c \n");
         }
     }
     
@@ -80,9 +80,9 @@ public class Trivia implements Minijuego {
         String ans;
         ans = sc.nextLine().toLowerCase();
         if (ans.equals("c")){
-            System.out.println("Correcto! El dioxido de carbono atrapa el calor en la atmósfera");
+            System.out.println("Correcto! El dioxido de carbono atrapa el calor en la atmósfera \n");
         } else {
-            System.out.println("Incorrecto. La respuesta es la c");
+            System.out.println("Incorrecto. La respuesta es la c \n");
         }
     }
 }
