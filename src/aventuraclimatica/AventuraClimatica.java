@@ -61,6 +61,13 @@ public class AventuraClimatica {
                 return;
             }
 
+            System.out.println("juego actual: " + current.minigame_name);
+            current.juego.play();
+
+            System.out.println("Escriba (i) para ir a la izquierda.");
+            System.out.println("Escriba (d) para ir a la derecha");
+            System.out.println("Escriba (q) para salir del juego.");
+
             if (current.dato == NODO_SOSTENIBILIDAD){
                 System.out.println("¡Felicidades! Has encontrado el Nodo de Sostenibilidad.");
                 System.out.println("Has aprendido sobre el cambio climativo y como ayudar a salvar el planeta ¡Gracias por ayudar a salvar el planeta!");
@@ -70,16 +77,6 @@ public class AventuraClimatica {
             } else {
                 System.out.println("El número es mayor que el Nodo de Sostenibilidad.");
             }
-
-            if (current.dato != miArbol.raiz.dato){
-                System.out.println("juego actual: " + current.minigame_name);
-                current.juego.play();
-            }
-
-            System.out.println("Escriba (i) para ir a la izquierda.");
-            System.out.println("Escriba (d) para ir a la derecha");
-            System.out.println("Escriba (q) para salir del juego.");
-
 
 
             String op = sc.nextLine().toLowerCase();
