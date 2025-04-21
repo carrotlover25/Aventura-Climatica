@@ -18,25 +18,31 @@ public class Trivia implements Minijuego {
     public void play(){
         System.out.println("Bienvenid@ a Trivia");
         Random random = new Random();
-        int aleatorio = random.nextInt(2);
-        
-        switch (aleatorio){
-            case 0:
-                pregunta1();
-                break;
-            case 1:
-                pregunta2();
-                break;
-            case 2:
-                pregunta3();
-                break;  
-            default:
-                System.out.println("Error del juego.");
+
+        boolean gano = false;
+        while (!gano) {
+            int aleatorio = random.nextInt(2);
+            System.out.println("================================");
+            switch (aleatorio){
+                case 0:
+                   gano = pregunta1();
+                    break;
+                case 1:
+                    gano = pregunta2();
+                    break;
+                case 2:
+                    gano = pregunta3();
+                    break;  
+                default:
+                    System.out.println("Error del juego.");
+            }
+
         }
+        
     }
     
     
-    public void pregunta1(){
+    public boolean pregunta1(){
         System.out.println("Pregunta:");
         System.out.println("¿Cuál de las siguientes acciones ayuda más a combatir el cambio climático?");
         System.out.println("a) Usar bolsas de plástico una sola vez");
@@ -48,13 +54,16 @@ public class Trivia implements Minijuego {
         ans = sc.nextLine().toLowerCase();
         
         if (ans.equals("b")){
+
             System.out.println("Correcto! Plantar árboles ayuda a absorber dióxido de carbono.\n");
+            return true;
         } else {
             System.out.println("Incorrecto. La respuesta es la b \n");
+            return false;
         }
     }
     
-    public void pregunta2(){
+    public boolean  pregunta2(){
         System.out.println("Pregunta");
         System.out.println("¿Cuál es una de las principales causas de la contaminación de los océanos?");
         System.out.println("a) El canto de las ballenas");
@@ -65,12 +74,14 @@ public class Trivia implements Minijuego {
         ans = sc.nextLine().toLowerCase();
         if (ans.equals("c")){
             System.out.println("Correcto! El plástico de un solo uso se convierte en microplásticos, contaminando los océanos.\n");
+            return true;
         } else {
             System.out.println("Incorrecto. La respuesta es la c \n");
+            return false;
         }
     }
     
-    public void pregunta3(){
+    public boolean pregunta3(){
         System.out.println("Pregunta:");
         System.out.println("¿Qué gas es el principal responsable del efecto invernadero?");
         System.out.println("a) Oxígeno");
@@ -81,8 +92,10 @@ public class Trivia implements Minijuego {
         ans = sc.nextLine().toLowerCase();
         if (ans.equals("c")){
             System.out.println("Correcto! El dioxido de carbono atrapa el calor en la atmósfera \n");
+            return true;
         } else {
             System.out.println("Incorrecto. La respuesta es la c \n");
+            return false;
         }
     }
 }
